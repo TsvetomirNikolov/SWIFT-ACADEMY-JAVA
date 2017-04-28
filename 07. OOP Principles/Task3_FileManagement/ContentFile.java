@@ -12,4 +12,22 @@ public class ContentFile extends File {
         this._content = content;
         this._lastModifiedDate = LocalDate.now();
     }
+
+    public String getContent() {
+        return _content;
+    }
+
+    public LocalDate getLastModifiedDate() {
+        return _lastModifiedDate;
+    }
+
+    public void modify(String content) {
+        this._content = content;
+    }
+
+    @Override
+    public String toString() {
+        String result;
+        return result = super.toString() + "\nLast modification date: " + _lastModifiedDate;
+    }
 }

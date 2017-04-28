@@ -20,9 +20,20 @@ public class File {
         this._locations = newLocation;
     }
 
-    private String copy(String newLocation) {
-        this._locations = newLocation;
-        return _locations;
+    private File copy(String newLocation) {
+        if (this instanceof DocumentContentFile) {
+            DocumentContentFile documentContentFile = (DocumentContentFile) this;
+            return new DocumentContentFile(documentContentFile.getName(), newLocation, documentContentFile.getContent());
+        }
+        if (this instanceof ExecutableFile) {
+            ExecutableFile executeFile = (ExecutableFile) this;
+            return new ExecutableFile(executeFile.getName(), newLocation, executeFile.getRequiredResources());
+        }
+        if (this instanceof ContentFile) {
+            ContentFile contentFile = (ContentFile) this;
+            return new ContentFile(contentFile.getName(), newLocation, contentFile.getContent());
+        }
+        return null;
     }
 
     private void delete() {
@@ -46,6 +57,6 @@ public class File {
     }
 
     void getInfo() {
-        System.out.println("Name: " + this.getName() + this.getDate() + "Creation date: " + this.getDate() + "\n");
+        System.out.println("Name: " + this.getName() + this.getDate() + "Creation date: \n" + this.getDate() + "\n");
     }
 }
