@@ -5,26 +5,26 @@ import java.util.ArrayList;
 public class Class {
 
     private Student[] _students;
-    private Teacher[] _teacher;
+    private Teacher[] _teachers;
 
-    public Class(Student[] student, Teacher[] teacher) {
-        this._students = student;
-        this._teacher = teacher;
+    public Class(Student[] students, Teacher[] teachers) {
+        this._students = students;
+        this._teachers = teachers;
     }
 
     public void setStudents(Student[] student) {
         this._students = student;
     }
 
-    public void setTeacher(Teacher[] teacher) {
-        this._teacher = teacher;
+    public void setTeachers(Teacher[] teacher) {
+        this._teachers = teacher;
     }
 
-    public Student[] getStudent() {
+    public Student[] getStudents() {
         return _students;
     }
 
-    public Teacher[] getTeacher() {
-        return _teacher;
+    public Teacher[] getTeachers() {
+        return _teachers;
     }
 }
