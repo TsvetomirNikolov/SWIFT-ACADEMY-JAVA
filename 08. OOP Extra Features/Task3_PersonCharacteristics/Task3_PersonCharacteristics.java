@@ -30,9 +30,10 @@ public class Task3_PersonCharacteristics {
                     arrayInput[8],
                     Integer.parseInt(arrayInput[9]),
                     arrayInput[10],
-                    Integer.parseInt(arrayInput[11]),
-                    Integer.parseInt(arrayInput[12]),
+                    arrayInput[11],
+                    arrayInput[12],
                     arrayInput[13]);
+
             Education education = educationInfo.gradesOfEducation(arrayInput);
             educationInfo._person[i] = new Person(arrayInput[0],
                     arrayInput[1],
@@ -49,30 +50,30 @@ public class Task3_PersonCharacteristics {
             case 'P':
                 return new PrimaryEducation(education[15],
                         LocalDate.parse(education[16], _formatter),
-                        LocalDate.parse(education[17], _formatter), "Primary");
+                        LocalDate.parse(education[17], _formatter), "primary");
             case 'S':
                 return new SecondaryEducation(education[15],
                         LocalDate.parse(education[16], _formatter),
                         LocalDate.parse(education[17], _formatter),
-                        "Secondary",
+                        "secondary",
                         education.length == 19 ? Double.parseDouble(education[18]) : -1); // Ternary operator take from your previous solutions.
             case 'B':
                 return new HigherEducation(education[15],
                         LocalDate.parse(education[16], _formatter),
                         LocalDate.parse(education[17], _formatter),
-                        "Bachelor",
-                        education.length == 14 ? Double.parseDouble(education[18]) : -1);
+                        "bachelor",
+                        education.length == 19 ? Double.parseDouble(education[18]) : -1);
             case 'M':
                 return new HigherEducation(education[15],
                         LocalDate.parse(education[16], _formatter),
                         LocalDate.parse(education[17], _formatter),
-                        "Master",
+                        "master",
                         education.length == 19 ? Double.parseDouble(education[18]) : -1);
             case 'D':
                 return new HigherEducation(education[15],
                         LocalDate.parse(education[16], _formatter),
                         LocalDate.parse(education[17], _formatter),
-                        "Doctorate",
+                        "doctorate",
                         education.length == 19 ? Double.parseDouble(education[18]) : -1);
         }
         return null;

@@ -10,8 +10,16 @@ public class Student {
         this._schoolNumber = schoolNumber;
     }
 
+    public String getName() {
+        return _name;
+    }
+
+    public String getSchoolNumber() {
+        return _schoolNumber;
+    }
+
     @Override
     public String toString() {
-        return String.format("%s school number is %s", this._name, this._schoolNumber);
+        return String.format("%s school number is %s", this.getName(), this.getSchoolNumber());
     }
 }

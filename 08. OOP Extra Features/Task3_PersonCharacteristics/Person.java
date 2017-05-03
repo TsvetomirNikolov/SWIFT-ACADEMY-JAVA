@@ -40,6 +40,10 @@ public class Person {
             _genderSex = "She";
         }
     }
+
+    public String getGenderSex() {
+        return _genderSex;
+    }
     Address adress = null;
 
     @Override
@@ -53,17 +57,18 @@ public class Person {
                 _genderSex,
                 _dateOfBirth.getYear());
         if (_yearsOld < 18) {
-            endResult += String.format(" %s %s is under-aged.\n",
+            endResult += String.format("\n%s %s is under-aged.\n",
                     _firstName,
                     _lastName);
         } else {
             endResult += "\n";
         }
-        endResult += String.format("\n" + "%s lives at: \n", this._genderSex + adress.toString());
+        endResult += String.format("%s lives at:\n", this.getGenderSex());
+        endResult += adress.toString() + "\n";
 
         if (_higherEducation.isGraduated()) {
-            endResult += String.format("%s started %s in %s on %s and finished on %s. His grade was %.3f.",
-                    _gender,
+            endResult += String.format("%s started %s degree in %s on %s and finished on %s. His grade was %.3f.",
+                    getGenderSex(),
                     _higherEducation.getDegree(),
                     _higherEducation.getInstitutionName(),
                     _higherEducation.getEnrollmentDate().format(formatter),
@@ -71,8 +76,8 @@ public class Person {
                     _higherEducation instanceof GradedEducation ? ((GradedEducation) _higherEducation).getFinalGrade() : "");
 
         } else {
-            endResult += String.format("%s started %s on %s and is supposed to graduate on %s.",
-                    _gender,
+            endResult += String.format("%s started %s degree in %s on %s and is supposed to graduate on %s.",
+                    getGenderSex(),
                     _higherEducation.getDegree(),
                     _higherEducation.getInstitutionName(),
                     _higherEducation.getEnrollmentDate().format(formatter),

@@ -3,11 +3,11 @@ package Task1_School;
 public class Teacher {
 
     private String _name;
-    Discipline[] discipline;
+    private Discipline[] _discipline;
 
     public Teacher(String name, Discipline[] discipline) {
         this._name = name;
-        this.discipline = discipline;
+        this._discipline = discipline;
     }
 
     public String getName() {
@@ -15,6 +15,6 @@ public class Teacher {
     }
 
     public Discipline[] getDiscipline() {
-        return discipline;
+        return _discipline;
     }
 }

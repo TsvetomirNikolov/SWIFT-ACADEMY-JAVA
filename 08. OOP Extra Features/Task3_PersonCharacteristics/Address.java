@@ -7,11 +7,11 @@ public class Address {
     private String _municipality;
     private int _postalCode;
     private String _street;
-    private int _number;
-    private int _floor;
+    private String _number;
+    private String _floor;
     private String _apartmentNo;
 
-    public Address(String country, String city, String municipality, int postalCode, String street, int number, int floor, String apartamentNo) {
+    public Address(String country, String city, String municipality, int postalCode, String street, String number, String floor, String apartamentNo) {
         this._country = country;
         this._city = city;
         this._municipality = municipality;
@@ -22,25 +22,21 @@ public class Address {
         this._apartmentNo = apartamentNo;
     }
 
-    public Address(String country, String city, String municipality, int postalCode, String street, int number) {
-        this(country, city, municipality, postalCode, street, number, 0, null);
+    public Address(String country, String city, String municipality, int postalCode, String street, String number) {
+        this(country, city, municipality, postalCode, street, number, null, null);
     }
 
-    public Address(String country, String city, String municipality, int postalCode, String street, int number, int floor) {
-        this(country, city, municipality, postalCode, street, number, 0, null);
-    }
-
-    public Address(String country, String city, String municipality, int postalCode, String street, int number, String apartmentNo) {
-        this(country, city, municipality, postalCode, street, number, 0, apartmentNo);
+    public Address(String country, String city, String municipality, int postalCode, String street, String number, String floor) {
+        this(country, city, municipality, postalCode, street, number, floor, null);
     }
 
     @Override
     public String toString() {
         return String.format(
-                "%d %s Street"
-                + "\n fl. %d, ap. %d"
-                + "\n %d, %s"
-                + "\n %s, %s",
+                "%s %s Street"
+                + "\nfl. %s, ap. %s"
+                + "\n%d %s"
+                + "\n%s, %s",
                 this._number, this._street,
                 this._floor, this._apartmentNo,
                 this._postalCode, this._municipality,

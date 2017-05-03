@@ -4,27 +4,27 @@ import java.util.ArrayList;
 
 public class Class {
 
-    Student[] student;
-    Teacher[] teacher;
+    private Student[] _students;
+    private Teacher[] _teacher;
 
     public Class(Student[] student, Teacher[] teacher) {
-        this.student = student;
-        this.teacher = teacher;
+        this._students = student;
+        this._teacher = teacher;
     }
 
-    public void setStudent(Student[] student) {
-        this.student = student;
+    public void setStudents(Student[] student) {
+        this._students = student;
     }
 
     public void setTeacher(Teacher[] teacher) {
-        this.teacher = teacher;
+        this._teacher = teacher;
     }
 
     public Student[] getStudent() {
-        return student;
+        return _students;
     }
 
     public Teacher[] getTeacher() {
-        return teacher;
+        return _teacher;
     }
 }
