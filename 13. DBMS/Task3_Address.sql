@@ -28,7 +28,8 @@ CREATE TABLE `addresses` (
   `number` int(11) NOT NULL,
   `apartmentNo` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `street_id` FOREIGN KEY (`id`) REFERENCES `streets` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `streeet_id_idx` (`street_id`),
+  CONSTRAINT `street_id` FOREIGN KEY (`street_id`) REFERENCES `municipalities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -52,7 +53,7 @@ CREATE TABLE `countries` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,6 +62,7 @@ CREATE TABLE `countries` (
 
 LOCK TABLES `countries` WRITE;
 /*!40000 ALTER TABLE `countries` DISABLE KEYS */;
+INSERT INTO `countries` VALUES (1,'BUlgaria'),(2,'Estonia');
 /*!40000 ALTER TABLE `countries` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -72,12 +74,13 @@ DROP TABLE IF EXISTS `municipalities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `municipalities` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `postal_code` int(11) NOT NULL,
   `populated_area_id` int(11) NOT NULL,
-  KEY `populated_area_id_idx` (`id`),
-  CONSTRAINT `populated_area_id` FOREIGN KEY (`id`) REFERENCES `populated_areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`id`),
+  KEY `populated_area_id_idx` (`populated_area_id`),
+  CONSTRAINT `populated_area_id` FOREIGN KEY (`populated_area_id`) REFERENCES `populated_areas` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -122,11 +125,14 @@ DROP TABLE IF EXISTS `populated_areas`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `populated_areas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `type_id` int(11) NOT NULL,
   `region_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `populated_areas` FOREIGN KEY (`id`) REFERENCES `populated_area_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `type_ids_idx` (`type_id`),
+  KEY `region_ids_idx` (`region_id`),
+  CONSTRAINT `region_ids` FOREIGN KEY (`region_id`) REFERENCES `regions` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `type_ids` FOREIGN KEY (`type_id`) REFERENCES `populated_area_types` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -148,10 +154,11 @@ DROP TABLE IF EXISTS `regions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `regions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) DEFAULT NULL,
+  `name` varchar(45) NOT NULL,
   `country_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `regions_id` FOREIGN KEY (`id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `country_ids_idx` (`country_id`),
+  CONSTRAINT `country_ids` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -176,7 +183,8 @@ CREATE TABLE `streets` (
   `name` varchar(45) NOT NULL,
   `municipality_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `municipality_id` FOREIGN KEY (`id`) REFERENCES `municipalities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `municipality_id_idx` (`municipality_id`),
+  CONSTRAINT `municipality_id` FOREIGN KEY (`municipality_id`) REFERENCES `municipalities` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -198,4 +206,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-25 16:22:44
+-- Dump completed on 2017-06-01 21:18:11
