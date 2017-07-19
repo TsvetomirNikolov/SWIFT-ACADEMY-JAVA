@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person id="15">
+    <name>Pesho</name>
+    <dateOfBirth>1996-02-22T00:00:00+02:00</dateOfBirth>
+    <grades>
+        <grade>5</grade>
+        <grade>4</grade>
+        <grade>5</grade>
+        <grade>6</grade>
+    </grades>
+</person>
